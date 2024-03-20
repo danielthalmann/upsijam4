@@ -29,7 +29,6 @@ La version qui a été remis à la game jam se trouve sur itch.io à l'adresse s
 
 - [https://valette-12419.itch.io/](https://valette-12419.itch.io/)
 - [https://github.com/mehdi-valette](https://github.com/mehdi-valette)
-test gihub repo
 
 ### Anish Sachdeva
 - [https://anishsachdeva.itch.io/](https://anishsachdeva.itch.io/)
