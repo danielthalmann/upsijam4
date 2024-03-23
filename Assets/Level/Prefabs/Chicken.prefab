@@ -155,6 +155,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3536f1ce565159c4d954d8d2ec2d97f3, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49b1037c9693823438f21758c9d1a29a, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ae992bdf97a7374e9511ac8935045da, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: eddb02c1321b28a439245d804b463097, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6f1f12ee1108846907683f192d3742, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: d87b554f4ed372b4da8c4dbd9ca9b463, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9b5a68cfc1aee942aafad78eecbf2a2, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b37b43aee0ad5b4b88cf204afdb902c, type: 2}
     - target: {fileID: -927199367670048503, guid: 78d046f7a455c5f43bc7fbf7768b35b3, type: 3}
       propertyPath: m_Name
       value: nicePoule
