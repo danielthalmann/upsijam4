@@ -10,7 +10,7 @@ public class PlayerGrab : MonoBehaviour
     private static float initalForce = 500;
     private float accumulatedForce = initalForce;
     private bool accumulatingForce = false;
-    public Collider grabCollider;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,8 @@ public class PlayerGrab : MonoBehaviour
     
     public void HandleChicken(InputAction.CallbackContext context)
     {
-      var value = context.ReadValue<float>();
+
+        var value = context.ReadValue<float>();
 
         if(value == 1)
         {
@@ -57,7 +58,7 @@ public class PlayerGrab : MonoBehaviour
     {
         var offset = new Vector3(0, 0.5f, 0.01f);
         
-        if (Physics.BoxCast((transform.position + offset), new Vector3(0.01f, 1f, 0.01f), transform.forward, out RaycastHit hit)) 
+        if (Physics.BoxCast((transform.position + offset), new Vector3(0.02f, 1f, 0.01f), transform.forward, out RaycastHit hit)) 
         {
            var chicken = hit.collider.GetComponent<Chicken>();
 
@@ -68,6 +69,7 @@ public class PlayerGrab : MonoBehaviour
                 grabbedChicken = chicken;
             }
         }
+
     }
     
     private void ThrowChicken()
