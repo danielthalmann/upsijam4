@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Chicken : MonoBehaviour
 {
-    private float health;
+    private float health = 1;
     private Vector3 targetDirection;
     private Vector3 currentDirection;
     private float speed;
@@ -13,14 +13,19 @@ public class Chicken : MonoBehaviour
     private float rotationAcc = 0;
     private bool chickenIsGrabbed = false;
     private Transform grabber;
+    private bool isInfected = false;
+
+    public float maxTimeToBite = 5;
+    private float timeToBite = 0;
+
+    public GameObject niceChickenMesh;
+    public GameObject badChickenMesh;
+    public float timeToTurn = 2;
 
     // Start is called before the first frame update
     public void Init(bool isInfected, Vector3 position) {
-        if (isInfected) {
-            health = 0;
-        } else {
-            health = 1;
-        }
+        this.isInfected = isInfected;
+        timeToTurn = Random.Range(5, 15);
 
         gameObject.transform.position = position;
 
@@ -30,11 +35,33 @@ public class Chicken : MonoBehaviour
 
         rotationTimer = (float)(Random.Range(2000, 5000)) / 1000f;
         speed = (float)(Random.Range(1000, 2000)) / 1000f;
+
+        badChickenMesh.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(isInfected && health > 0)
+        {
+            health = (float) System.Math.Max (health - (Time.deltaTime / timeToTurn), 0);
+        }
+
+        if(health > 0 && !niceChickenMesh.activeSelf)
+        {
+            niceChickenMesh.SetActive(true);
+            badChickenMesh.SetActive(false);
+        } else if(health == 0 && !badChickenMesh.activeSelf)
+        {
+            niceChickenMesh.SetActive(false);
+            badChickenMesh.SetActive(true);
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        timeToBite -= Time.deltaTime;
+
         if(chickenIsGrabbed && grabber != null)
         {
             gameObject.transform.position = grabber.position;
@@ -75,5 +102,45 @@ public class Chicken : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().AddForce(throwDirection * force);
 
         grabber = null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isInfected)
+        {
+            return;
+        }
+        var otherChicken = collision.gameObject.GetComponent<Chicken>();
+
+        if (otherChicken == null)
+        {
+            return;
+        }
+
+        if (otherChicken.IsContagious() && otherChicken.CanBite())
+        {
+            isInfected = true;
+            otherChicken.HasBiten();
+        }
+    }
+
+    public void HasBiten()
+    {
+        timeToBite = maxTimeToBite;
+    }
+
+    public bool IsContagious()
+    {
+        return health == 0;
+    }
+
+    public bool CanBite()
+    {
+        return timeToBite <= 0;
+    }
+
+    public bool IsInfected()
+    {
+        return isInfected;
     }
 }

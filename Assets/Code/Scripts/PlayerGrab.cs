@@ -56,9 +56,7 @@ public class PlayerGrab : MonoBehaviour
     private void GrabChicken()
     {
         var offset = new Vector3(0, 0.5f, 0.01f);
-
-        //Physics.Raycast(transform.position + liftVar, (transform.forward + liftVar) * 10, out RaycastHit hit))
-
+        
         if (Physics.BoxCast((transform.position + offset), new Vector3(0.01f, 1f, 0.01f), transform.forward, out RaycastHit hit)) 
         {
            var chicken = hit.collider.GetComponent<Chicken>();
