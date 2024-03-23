@@ -8,10 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     private Vector2 _inputs = Vector2.zero;
 
-    public CharacterController characterController;
     public Rigidbody characterRigidbody;
 
-    public float speed = 10f;
+    public float characterMovementForceMultiplier = 2f;
 
     public void Movement(InputAction.CallbackContext context)
     {
@@ -20,23 +19,18 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        /*Vector3 direction = new Vector3(_inputs.x, 0, _inputs.y);
-        Vector3 velocity = direction * speed;
-
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
-        var isometricInput = matrix.MultiplyPoint3x4(velocity * Time.deltaTime);
-*/
-        // characterController.Move(transform.TransformDirection(isometricInput));
-
         Vector3 direction = new Vector3(_inputs.x, 0, _inputs.y);
-        Vector3 velocity = direction * speed;
+        Vector3 velocity = direction * 10f;
 
         Quaternion rotation = Quaternion.Euler(0, 45, 0);
         Vector3 isometricInput = rotation * velocity;
 
-        // Debug.Log($"Input: {_inputs}, Direction: {direction}, Velocity: {velocity}, Final Position: {characterRigidbody.position + isometricInput * Time.fixedDeltaTime}");
+        characterRigidbody.MovePosition(characterRigidbody.position + (isometricInput * (Time.fixedDeltaTime * characterMovementForceMultiplier)));
 
-        characterRigidbody.AddForce(characterRigidbody.position + isometricInput, ForceMode.Force);
+        /*characterRigidbody.AddForce(
+            characterRigidbody.position + (isometricInput * (Time.fixedDeltaTime * correctedMovementForceMultiplier)),
+            ForceMode.VelocityChange
+        );*/
     }
 
     private void FixedUpdate()
