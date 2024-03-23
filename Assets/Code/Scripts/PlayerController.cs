@@ -19,22 +19,39 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        characterRigidbody.MovePosition(
+            characterRigidbody.position + (GetIsometricInputs() * (Time.fixedDeltaTime * characterMovementForceMultiplier))
+        );
+    }
+
+    private void Rotate()
+    {
+        if (_inputs != Vector2.zero)
+        {
+            var isometricInput = GetIsometricInputs();
+            var position = transform.position;
+
+            var relativePosition = (position + isometricInput) - position;
+            var playerRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
+
+            characterRigidbody.MoveRotation(playerRotation);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        Rotate();
+    }
+
+    private Vector3 GetIsometricInputs()
+    {
         Vector3 direction = new Vector3(_inputs.x, 0, _inputs.y);
         Vector3 velocity = direction * 10f;
 
         Quaternion rotation = Quaternion.Euler(0, 45, 0);
         Vector3 isometricInput = rotation * velocity;
 
-        characterRigidbody.MovePosition(characterRigidbody.position + (isometricInput * (Time.fixedDeltaTime * characterMovementForceMultiplier)));
-
-        /*characterRigidbody.AddForce(
-            characterRigidbody.position + (isometricInput * (Time.fixedDeltaTime * correctedMovementForceMultiplier)),
-            ForceMode.VelocityChange
-        );*/
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
+        return isometricInput;
     }
 }
