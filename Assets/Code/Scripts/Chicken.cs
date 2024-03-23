@@ -11,6 +11,8 @@ public class Chicken : MonoBehaviour
     private float speed;
     private float rotationTimer;
     private float rotationAcc = 0;
+    private bool chickenIsGrabbed = false;
+    private Transform grabber;
 
     // Start is called before the first frame update
     public void Init(bool isInfected, Vector3 position) {
@@ -33,6 +35,14 @@ public class Chicken : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(chickenIsGrabbed && grabber != null)
+        {
+            gameObject.transform.position = grabber.position;
+            gameObject.transform.rotation = grabber.rotation;
+
+            return;
+        }
+
         rotationAcc += Time.deltaTime;
 
         if (rotationAcc > rotationTimer)
@@ -46,5 +56,22 @@ public class Chicken : MonoBehaviour
 
         gameObject.transform.position += targetDirection * speed * Time.deltaTime;
         gameObject.transform.rotation = Quaternion.LookRotation(currentDirection);
+    }
+
+    public void GrabChicken(Transform transform)
+    {
+        chickenIsGrabbed = true;
+        grabber = transform;
+    }
+
+    public void ThrowChicken()
+    {
+        chickenIsGrabbed = false;
+
+        var throwDirection = new Vector3(grabber.rotation.x, 0.5f, grabber.rotation.z);
+
+        gameObject.GetComponent<Rigidbody>().AddForce(throwDirection);
+
+        grabber = null;
     }
 }
