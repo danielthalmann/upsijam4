@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b80a167df5a19f4f972ceb6dc0e6493, type: 3}
   m_Name: Sound Data
   m_EditorClassIdentifier: 
-  ambient: {fileID: 8300000, guid: c3ccdeeaab4a8e54db1bb4f3ea1396fb, type: 3}
+  ambient: {fileID: 8300000, guid: 230c0de983dd67f4e88177aa9b42cc47, type: 3}
   menu: {fileID: 8300000, guid: c3ccdeeaab4a8e54db1bb4f3ea1396fb, type: 3}
   fxChicken: {fileID: 0}
   fxPush: {fileID: 0}
