@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: baa901c016a413540b09e92eb8e91f54
+=======
+guid: c2c5e8b06a21e59488b4884ee50d3b50
+>>>>>>> 230b6a4 (chickens everywhere)
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
