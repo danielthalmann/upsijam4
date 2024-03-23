@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 29d85eadbbded4ba782ed58b8ef78976
+=======
+guid: 0b950f180018eb84a85688f9418588e2
+>>>>>>> 6177c48 (fixed chicken)
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
