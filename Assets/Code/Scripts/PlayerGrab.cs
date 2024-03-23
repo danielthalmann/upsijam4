@@ -6,14 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerGrab : MonoBehaviour
 {
     private Chicken grabbedChicken;
-    private float accumulatedForce = 0;
-    private float maxForce = 2_000;
+    private static float maxForce = 2_000;
+    private static float initalForce = 500;
+    private float accumulatedForce = initalForce;
     private bool accumulatingForce = false;
+    public Collider grabCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        accumulatedForce = initalForce;
     }
 
     // Update is called once per frame
@@ -53,9 +55,11 @@ public class PlayerGrab : MonoBehaviour
 
     private void GrabChicken()
     {
-        var liftVar = new Vector3(0, 0.2f, 0);
+        var offset = new Vector3(0, 0.5f, 0.01f);
 
-        if (Physics.Raycast(transform.position + liftVar, (transform.forward + liftVar) * 10, out RaycastHit hit))
+        //Physics.Raycast(transform.position + liftVar, (transform.forward + liftVar) * 10, out RaycastHit hit))
+
+        if (Physics.BoxCast((transform.position + offset), new Vector3(0.01f, 1f, 0.01f), transform.forward, out RaycastHit hit)) 
         {
            var chicken = hit.collider.GetComponent<Chicken>();
 
@@ -67,12 +71,12 @@ public class PlayerGrab : MonoBehaviour
             }
         }
     }
-
+    
     private void ThrowChicken()
     {
         grabbedChicken.ThrowChicken(accumulatedForce);
         accumulatingForce = false;
-        accumulatedForce = 0;
+        accumulatedForce = initalForce;
         grabbedChicken = null;
     }
 }

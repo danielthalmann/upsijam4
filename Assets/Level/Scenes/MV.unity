@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 1321213412}
   - component: {fileID: 1321213411}
   - component: {fileID: 1321213417}
+  - component: {fileID: 1321213418}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -419,7 +420,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321213410}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 10
   m_Drag: 10
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -598,7 +599,7 @@ Transform:
   m_GameObject: {fileID: 1321213410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -621,6 +622,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94aa4c00ce83bef4289cca5d9c5d59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabCollider: {fileID: 1321213418}
+--- !u!65 &1321213418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321213410}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.9441018, z: 2.2857351}
+  m_Center: {x: 0, y: 1.4720509, z: 0.64286643}
+--- !u!1001 &1399538293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.52016354
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615812633814967860, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960685420486554454, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
+      propertyPath: m_Name
+      value: bigFence
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfebc2fc5dc3e44c4a96cfcdf62cd8bc, type: 3}
 --- !u!1 &1437755554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 5479989953593656023, guid: 7989aaeb14b9ffd448070c81cb45bc4c, type: 3}
     - target: {fileID: 6985896653072899947, guid: f6daa858dbe53b1438fd7cea6ae437ee, type: 3}
       propertyPath: chickenCount
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6985896653072899947, guid: f6daa858dbe53b1438fd7cea6ae437ee, type: 3}
       propertyPath: enclosures.Array.size
@@ -1322,3 +1402,4 @@ SceneRoots:
   - {fileID: 1931533948}
   - {fileID: 121606020}
   - {fileID: 1321213416}
+  - {fileID: 1399538293}
