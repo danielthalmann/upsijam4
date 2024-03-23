@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody characterRigidbody;
 
+    public Animator farmerAnimator;
+
     public float characterMovementForceMultiplier = 2f;
+
+    private static readonly int Walking = Animator.StringToHash("walking");
 
     public void Movement(InputAction.CallbackContext context)
     {
@@ -22,6 +26,8 @@ public class PlayerController : MonoBehaviour
         characterRigidbody.MovePosition(
             characterRigidbody.position + (GetIsometricInputs() * (Time.fixedDeltaTime * characterMovementForceMultiplier))
         );
+
+        ChangeAnimationStateWalking(_inputs != Vector2.zero);
     }
 
     private void Rotate()
@@ -53,5 +59,10 @@ public class PlayerController : MonoBehaviour
         Vector3 isometricInput = rotation * velocity;
 
         return isometricInput;
+    }
+
+    private void ChangeAnimationStateWalking(bool state)
+    {
+        farmerAnimator.SetBool(Walking, state);
     }
 }
