@@ -29,7 +29,7 @@ public class Chicken : MonoBehaviour
         gameObject.transform.rotation = Quaternion.LookRotation (targetDirection);
 
         rotationTimer = (float)(Random.Range(2000, 5000)) / 1000f;
-        speed = (float)(Random.Range(2000, 4000)) / 1000f;
+        speed = (float)(Random.Range(1000, 2000)) / 1000f;
     }
 
     // Update is called once per frame
@@ -62,15 +62,17 @@ public class Chicken : MonoBehaviour
     {
         chickenIsGrabbed = true;
         grabber = transform;
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
     }
 
-    public void ThrowChicken()
+    public void ThrowChicken(float force)
     {
         chickenIsGrabbed = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
 
-        var throwDirection = new Vector3(grabber.rotation.x, 0.5f, grabber.rotation.z);
+        var throwDirection = new Vector3(grabber.forward.x, 1f, grabber.forward.z);
 
-        gameObject.GetComponent<Rigidbody>().AddForce(throwDirection);
+        gameObject.GetComponent<Rigidbody>().AddForce(throwDirection * force);
 
         grabber = null;
     }

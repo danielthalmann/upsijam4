@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerGrab : MonoBehaviour
 {
+    private Chicken grabbedChicken;
+    private float accumulatedForce = 0;
+    private float maxForce = 2_000;
+    private bool accumulatingForce = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +21,58 @@ public class PlayerGrab : MonoBehaviour
     {
         
     }
+    
+    public void HandleChicken(InputAction.CallbackContext context)
+    {
+      var value = context.ReadValue<float>();
 
-    public void GrabChicken()
-    {        
+        if(value == 1)
+        {
+            if (grabbedChicken != null)
+            {
+                accumulatingForce = true;
+            }
+            return;
+        }
 
-        //var raycast = Physics.Raycast(transform.position, vectordir, out RaycastHit hit);
+     if(grabbedChicken == null)
+        {
+            GrabChicken();
+        } else
+        {
+            ThrowChicken();
+        }
+    }
 
-        Debug.DrawRay(transform.position, transform.forward);
+    private void FixedUpdate()
+    {
+        if(accumulatingForce && accumulatedForce < maxForce) {
+            accumulatedForce += Time.fixedDeltaTime * maxForce / 3;
+        }
+    }
 
-        //if (Physics.Raycast(transform.position, vectordir, out RaycastHit hit))
-        //{
+    private void GrabChicken()
+    {
+        var liftVar = new Vector3(0, 0.2f, 0);
 
-        //}
+        if (Physics.Raycast(transform.position + liftVar, (transform.forward + liftVar) * 10, out RaycastHit hit))
+        {
+           var chicken = hit.collider.GetComponent<Chicken>();
+
+            if (chicken != null)
+            {
+                Transform transform = GameObject.Find("ChickenPosition").transform;
+                chicken.GrabChicken(transform);
+                grabbedChicken = chicken;
+            }
+        }
+    }
+
+    private void ThrowChicken()
+    {
+        grabbedChicken.ThrowChicken(accumulatedForce);
+        accumulatingForce = false;
+        accumulatedForce = 0;
+        grabbedChicken = null;
     }
 }
