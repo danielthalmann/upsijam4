@@ -25,6 +25,7 @@ public class Game : MonoBehaviour
             do
             {
                 chickenPosition = new Vector3(Random.Range(-fieldPosition.x, fieldPosition.x), 0, Random.Range(-fieldPosition.z, fieldPosition.z));
+                chickenPosition += gameObject.transform.position;
                 chickenBounds = newChicken.GetComponent<Collider>().bounds;
                 chickenBounds.center += chickenPosition;
             } while (IsIntersecting(chickenBounds, enclosures));

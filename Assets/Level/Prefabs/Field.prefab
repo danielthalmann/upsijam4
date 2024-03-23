@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 735281193743349461}
   - component: {fileID: 5814065258119027250}
   - component: {fileID: 6985896653072899947}
-  - component: {fileID: 1238154214230018287}
   m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
@@ -120,19 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1694196578bfa9e46915af8fdda8bb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chicken: {fileID: 2927319329812619328, guid: 7989aaeb14b9ffd448070c81cb45bc4c, type: 3}
-  chickenCount: 0
---- !u!114 &1238154214230018287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123715811388934152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1694196578bfa9e46915af8fdda8bb35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chicken: {fileID: 2927319329812619328, guid: 7989aaeb14b9ffd448070c81cb45bc4c, type: 3}
-  chickenCount: 100
+  chicken: {fileID: 5479989953593656023, guid: 7989aaeb14b9ffd448070c81cb45bc4c, type: 3}
+  chickenCount: 20
+  enclosures: []
