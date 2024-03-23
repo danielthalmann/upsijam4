@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour
         characterRigidbody.MovePosition(
             characterRigidbody.position + (GetIsometricInputs() * (Time.fixedDeltaTime * characterMovementForceMultiplier))
         );
-
-        ChangeAnimationStateWalking(_inputs != Vector2.zero);
     }
 
     private void Rotate()
@@ -42,6 +40,11 @@ public class PlayerController : MonoBehaviour
 
             characterRigidbody.MoveRotation(playerRotation);
         }
+    }
+
+    private void Update()
+    {
+        ChangeAnimationStateWalking(_inputs != Vector2.zero);
     }
 
     private void FixedUpdate()

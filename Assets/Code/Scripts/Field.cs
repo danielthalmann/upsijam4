@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class Field : MonoBehaviour
 {
     public Chicken chicken;
     public uint chickenCount;
     public Enclosure[] enclosures;
+    public GameStats stats;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,10 @@ public class Game : MonoBehaviour
                 chickenBounds.center += chickenPosition;
             } while (IsIntersecting(chickenBounds, enclosures));
 
-            newChicken.Init(false, chickenPosition);
+            newChicken.Init(i < chickenCount / 10, chickenPosition);
         }
+
+        stats.Init();
     }
 
     bool IsIntersecting(Bounds chickenBounds, Enclosure[] enclosures)
