@@ -60,6 +60,11 @@ public class Chicken : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(IsInfected() && !IsContagious())
+        {
+            return;
+        }
+
         timeToBite -= Time.deltaTime;
 
         if(chickenIsGrabbed && grabber != null)
