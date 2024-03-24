@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.005888834, g: 0.0076447446, b: 0.014376884, a: 1}
+  m_IndirectSpecularColor: {r: 0.0054438775, g: 0.007628559, b: 0.013787717, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -881,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 5479989953593656023, guid: 7989aaeb14b9ffd448070c81cb45bc4c, type: 3}
     - target: {fileID: 6985896653072899947, guid: f6daa858dbe53b1438fd7cea6ae437ee, type: 3}
       propertyPath: chickenCount
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6985896653072899947, guid: f6daa858dbe53b1438fd7cea6ae437ee, type: 3}
       propertyPath: enclosures.Array.size
@@ -961,5 +961,3 @@ SceneRoots:
   - {fileID: 3782494686380311778}
   - {fileID: 1490157459}
   - {fileID: 1059384489}
-  - {fileID: 339457532}
-  - {fileID: 1795372609}

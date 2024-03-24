@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FenceB (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3467936370918291324, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
+      propertyPath: m_Size.x
+      value: 2.0210497
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467936370918291324, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
+      propertyPath: m_Center.x
+      value: -0.004458785
+      objectReference: {fileID: 0}
     - target: {fileID: 8919783389298124251, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.33
@@ -119,7 +127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8919783389298124251, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.836605
+      value: -8.919
       objectReference: {fileID: 0}
     - target: {fileID: 8919783389298124251, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
       propertyPath: m_LocalPosition.y
@@ -499,7 +507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075057974367938774, guid: afbd70c9a77e046069ce2b018e0cbd07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.95
+      value: 14.081
       objectReference: {fileID: 0}
     - target: {fileID: 6075057974367938774, guid: afbd70c9a77e046069ce2b018e0cbd07, type: 3}
       propertyPath: m_LocalRotation.w
@@ -547,6 +555,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5615812633814967860}
     m_Modifications:
+    - target: {fileID: 1419304313940330819, guid: b47cfe20c817c489684941a806e08d5a, type: 3}
+      propertyPath: m_Size.x
+      value: 2.2166462
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419304313940330819, guid: b47cfe20c817c489684941a806e08d5a, type: 3}
+      propertyPath: m_Center.x
+      value: 0.20778006
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419304313940330819, guid: b47cfe20c817c489684941a806e08d5a, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0000000010472131
+      objectReference: {fileID: 0}
     - target: {fileID: 6499336188793175863, guid: b47cfe20c817c489684941a806e08d5a, type: 3}
       propertyPath: m_Name
       value: FenceC (4)
@@ -623,7 +643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8920816327066282593, guid: d157730ca1ebf4427a646898ed556e34, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.49
+      value: 15.532
       objectReference: {fileID: 0}
     - target: {fileID: 8920816327066282593, guid: d157730ca1ebf4427a646898ed556e34, type: 3}
       propertyPath: m_LocalRotation.w
@@ -674,6 +694,18 @@ PrefabInstance:
     - target: {fileID: 2823270150839029065, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
       propertyPath: m_Name
       value: FenceB (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467936370918291324, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
+      propertyPath: m_Size.x
+      value: 2.011096
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467936370918291324, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
+      propertyPath: m_Center.x
+      value: -0.18733886
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467936370918291324, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
+      propertyPath: m_Center.z
+      value: 0.10699039
       objectReference: {fileID: 0}
     - target: {fileID: 8919783389298124251, guid: 6147406a55f5944b2a73a29083753a98, type: 3}
       propertyPath: m_LocalPosition.x
