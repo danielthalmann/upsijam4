@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameStats : MonoBehaviour
 {
-    private Chicken[] chickens;
+    public Chicken[] chickens;
     private IsolatedArea[] isolatedAreas;
     private float checkCountdown = 0;
     private float checkFrenquency = 2;
