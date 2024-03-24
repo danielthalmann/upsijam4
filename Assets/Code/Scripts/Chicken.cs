@@ -18,8 +18,9 @@ public class Chicken : MonoBehaviour
     public float maxTimeToBite = 5;
     private float timeToBite = 0;
 
-    public GameObject niceChickenMesh;
-    public GameObject badChickenMesh;
+    public GameObject niceChickenObject;
+    public GameObject badChickenObject;
+    public GameObject infectedChickenObject;
     public float timeToTurn = 2;
 
     // Start is called before the first frame update
@@ -36,24 +37,33 @@ public class Chicken : MonoBehaviour
         rotationTimer = (float)(Random.Range(2000, 5000)) / 1000f;
         speed = (float)(Random.Range(1000, 2000)) / 1000f;
 
-        badChickenMesh.SetActive(false);
+        badChickenObject.SetActive(false);
+        infectedChickenObject.SetActive(false);
     }
 
     private void Update()
     {
         if(isInfected && health > 0)
         {
+            if (!infectedChickenObject)
+            {
+                niceChickenObject.SetActive(false);
+                badChickenObject.SetActive(false);
+                infectedChickenObject.SetActive(true);
+            }
             health = (float) System.Math.Max (health - (Time.deltaTime / timeToTurn), 0);
         }
 
-        if(health > 0 && !niceChickenMesh.activeSelf)
+        if(health > 0 && !niceChickenObject.activeSelf)
         {
-            niceChickenMesh.SetActive(true);
-            badChickenMesh.SetActive(false);
-        } else if(health == 0 && !badChickenMesh.activeSelf)
+            niceChickenObject.SetActive(true);
+            badChickenObject.SetActive(false);
+            infectedChickenObject.SetActive(false);
+        } else if(health == 0 && !badChickenObject.activeSelf)
         {
-            niceChickenMesh.SetActive(false);
-            badChickenMesh.SetActive(true);
+            infectedChickenObject.SetActive(false);
+            badChickenObject.SetActive(true);
+            niceChickenObject.SetActive(false);
         }
     }
 
