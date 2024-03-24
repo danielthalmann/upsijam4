@@ -9,11 +9,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Play()
     {
-        // The MainMenu should have a build index of 0 (File > Build Settings > Scenes In Build)
-        int activeSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // Loads the next scene, based on the build index
-        SceneManager.LoadScene(activeSceneBuildIndex + 1);
+        SceneManager.LoadScene("Level");
     }
 
     public void ShowCredits()
@@ -31,5 +27,10 @@ public class MainMenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void GoMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
