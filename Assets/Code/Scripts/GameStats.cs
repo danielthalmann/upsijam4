@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStats : MonoBehaviour
 {
@@ -90,12 +91,12 @@ public class GameStats : MonoBehaviour
             if(safeArea)
             {
                 // GO TO WINNING SCENE
-                Debug.Log("WIN");
+                SceneManager.LoadScene("wonGame");
                 return;
             }
         }
 
         // GO TO LOSE SCENE
-        Debug.Log("LOSE");
+        SceneManager.LoadScene("lostGame");
     }
 }
