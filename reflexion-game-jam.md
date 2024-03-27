@@ -121,3 +121,23 @@ Par contre il n’est pas indiqué pour du rapide programming comme dans une gam
 #### Solution
 
 Chaque personne utilise son propre ordinateur pour avancer sur sa propre problématique. On doit s’entre-aider occasionnellement lorsqu’on est bloqué·e ; on ne doit pas passer tout la Jam à seconder quelqu’un d’autre.
+
+### Taille et placement de l'UI
+
+#### Problème
+
+Les éléments de l'UI apparaissent au mauvais endroit, parfois trop petits, parfois trop grands selon la taille de l'écran.
+
+#### Solution
+
+Peut-être que le UI Toolkit permet un meilleur placement et redimensionnement des images.
+
+## À faire durant la Jam
+
+### Régulièrement tester le jeu
+
+Il peut y avoir une grande différence entre ce que l'on prévoit dans notre tête et la réalité. Il est important de tester le jeux régulièrement pour vérifier que la game design reste intéressant.
+
+Pour cela il est utile d'avoir un jeux jouable au plus vite, même si les assets ne sont pas encore prêts et que l'on contrôle un cube au milieux de sphères.
+
+Il est également important de commencer par la mécanique principale. Si l'important est de pouvoir lancer un objet et que le déplacement est secondaire, commencer par tester le lancer.
