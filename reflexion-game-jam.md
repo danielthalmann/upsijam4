@@ -132,6 +132,16 @@ Les éléments de l'UI apparaissent au mauvais endroit, parfois trop petits, par
 
 Peut-être que le UI Toolkit permet un meilleur placement et redimensionnement des images.
 
+### Présentation du jeux aux autres participant·es
+
+#### Problème
+
+Notre présentation était improvisée et nous avons manqué des choses importantes. Par exemple, nous aurions pu en profiter pour avertir que maintenir la barre espace permet de lancer plus fort.
+
+#### Solution
+
+Il vaut la peine de prendre 15 minutes pour préparer une présentation de 1 minute. Une bonne présentation peut valoriser le jeux auprès des futures testeu·ses.
+
 ## À faire durant la Jam
 
 ### Régulièrement tester le jeu
