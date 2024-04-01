@@ -12,11 +12,9 @@ public class PlayerController : MonoBehaviour
 
     public Animator farmerAnimator;
 
-    public float turnSpeed = 0.01f;
+    public float turningSpeed = 0.01f;
     public float speed = 10f;
 
-    private Vector3 targetMoveVector = Vector3.zero;
-    private Vector3 currentRotationVector = Vector3.zero;
     private float turn = 0;
     private float advance = 0;
 
@@ -52,8 +50,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (turn != 0) { 
-            transform.forward = Quaternion.Euler(0, 180 * Time.fixedDeltaTime * turnSpeed * turn, 0) * transform.forward;
+        if (turn != 0) {
+            transform.forward = Quaternion.Euler(0, 180 * Time.fixedDeltaTime * turningSpeed * turn, 0) * transform.forward;
         }
 
         if (advance != 0 || characterRigidbody.velocity != Vector3.zero)

@@ -112,6 +112,8 @@ public class Chicken : MonoBehaviour
         chickenIsGrabbed = false;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         grabber = null;
+
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)

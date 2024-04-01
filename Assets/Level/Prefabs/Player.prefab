@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmerAnimator: {fileID: 3633126597999714517}
-  turnSpeed: 1
+  turningSpeed: 1
   speed: 15
 --- !u!54 &2361874932126792238
 Rigidbody:
