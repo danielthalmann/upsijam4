@@ -146,7 +146,7 @@ Il vaut la peine de prendre 15 minutes pour préparer une présentation de 1 min
 
 ### Régulièrement tester le jeu
 
-Il peut y avoir une grande différence entre ce que l'on prévoit dans notre tête et la réalité. Il est important de tester le jeux régulièrement pour vérifier que la game design reste intéressant.
+Il peut y avoir une grande différence entre ce que l'on prévoit dans notre tête et la réalité. Il est important de tester le jeux régulièrement pour vérifier que le game design reste intéressant.
 
 Pour cela il est utile d'avoir un jeux jouable au plus vite, même si les assets ne sont pas encore prêts et que l'on contrôle un cube au milieux de sphères.
 
