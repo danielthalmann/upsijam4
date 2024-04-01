@@ -9,30 +9,34 @@ public class PlayerAction : MonoBehaviour
     void OnDrawGizmos()
     {
 
-        //var renderer = gameObject.GetComponent<Collider>();
-        //Debug.Log("renderer: " + renderer);
-        //if (renderer == null) { return; }
-
-
-        //var bottom = transform.position;
-        //var topVector = new Vector3(0, renderer.bounds.size.y, 0);
-        //var center = bottom + topVector;
-        //var radius = renderer.bounds.size.z * 1.5f;
-
-        //Gizmos.DrawSphere(center, radius);
     }
 
-    public void Action()
+    public void Action(InputAction.CallbackContext context)
     {
-        var collider = gameObject.GetComponent<Collider>();
-        if (collider == null) { return; }
+        var playerCollider = gameObject.GetComponent<Collider>();
+        if (playerCollider == null) { return; }
+
+        var input = context.ReadValue<float>();
+
+        if(input == 1) { return; }
 
         var bottom = transform.position;
-        var topVector = new Vector3(0, collider.bounds.size.y, 0);
+        var topVector = new Vector3(0, playerCollider.bounds.size.y, 0);
         var center = bottom + topVector;
-        var radius = collider.bounds.size.z * 1.5f;
+        var radius = playerCollider.bounds.size.z * 1.5f;
 
-        Physics.SphereCast(center, radius, transform.up, out RaycastHit hit, radius);
+        var colliders = Physics.OverlapSphere(center, radius);
+
+        foreach(var collider in colliders)
+        {
+            var door = collider.GetComponent<Door>();
+
+            if(door != null)
+            {
+                door.Action();
+                return;
+            }
+        }
 
         Debug.Log("PlayerAction.Action");
     }

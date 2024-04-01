@@ -4,53 +4,32 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractive
 {
-    private bool open = false;
-    private float targetAngle;
-    private bool userIsCloseToDoor = false;
+    private Animator myDoor = null;
+    private bool doorIsOpen = false;
 
-    private void Update()
+    void Start()
     {
-        if (transform.rotation.y == targetAngle)
-        {
-            return;
-        }
-
-        //if (System.Math.Abs(transform.rotation.y - targetAngle) < 0.1)
-        //{
-            transform.rotation.Set(0, targetAngle, 0, 0);
-            return;
-        //}
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        var player = collider.GetComponent<PlayerController>();
-
-        if (player != null)
-        {
-            userIsCloseToDoor = true;
-        }
-        else
-        {
-            userIsCloseToDoor = false;
-        }
+        myDoor = GetComponent<Animator>();
     }
 
     public void Action()
     {
-        if(!userIsCloseToDoor)
+        // return if animation is playing
+        if(
+            myDoor.GetCurrentAnimatorStateInfo(0).length > 
+            myDoor.GetCurrentAnimatorStateInfo(0).normalizedTime
+        )
         {
             return;
         }
 
-        if(open)
+        if (doorIsOpen)
         {
-            open = false;
-            targetAngle = 0;
-        } else
-        {
-            open = true;
-            targetAngle = 90;
+            myDoor.Play("DoorClose", 0, 0);
+            doorIsOpen = false;
+        } else {
+            myDoor.Play("DoorOpen", 0, 0);
+            doorIsOpen = true;
         }
     }
 }
