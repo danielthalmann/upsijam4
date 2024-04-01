@@ -107,15 +107,10 @@ public class Chicken : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().useGravity = false;
     }
 
-    public void ThrowChicken(float force)
+    public void PlaceChicken()
     {
         chickenIsGrabbed = false;
         gameObject.GetComponent<Rigidbody>().useGravity = true;
-
-        var throwDirection = new Vector3(grabber.forward.x, 1f, grabber.forward.z);
-
-        gameObject.GetComponent<Rigidbody>().AddForce(throwDirection * force);
-
         grabber = null;
     }
 

@@ -6,77 +6,58 @@ using UnityEngine.InputSystem;
 public class PlayerGrab : MonoBehaviour
 {
     private Chicken grabbedChicken;
-    private static float maxForce = 2_000;
-    private static float initalForce = 500;
-    private float accumulatedForce = initalForce;
-    private bool accumulatingForce = false;
+    public string[] grabbableLayers;
+    private int chickenLayer;
     public Animator animator;
 
-    // Start is called before the first frame update
     void Start()
     {
-        accumulatedForce = initalForce;
+        chickenLayer = LayerMask.GetMask(grabbableLayers);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void HandleChicken(InputAction.CallbackContext context)
     {
 
         var value = context.ReadValue<float>();
 
-        if(value == 1)
-        {
-            if (grabbedChicken != null)
-            {
-                accumulatingForce = true;
-            }
-            return;
-        }
-
-     if(grabbedChicken == null)
+        if(grabbedChicken == null)
         {
             GrabChicken();
         } else
         {
-            ThrowChicken();
+            PlaceChicken();
         }
     }
 
-    private void FixedUpdate()
+    void OnDrawGizmos()
     {
-        if(accumulatingForce && accumulatedForce < maxForce) {
-            accumulatedForce += Time.fixedDeltaTime * maxForce / 3;
-        }
     }
 
     private void GrabChicken()
     {
-        var offset = new Vector3(0, 0.5f, 0.01f);
-        
-        if (Physics.BoxCast((transform.position + offset), new Vector3(0.02f, 1f, 0.01f), transform.forward, out RaycastHit hit)) 
-        {
-           var chicken = hit.collider.GetComponent<Chicken>();
+        var offset = new Vector3(0, 0.5f, 0);
+        var center = transform.position + offset + transform.forward * 0.5f;
+        var radius = 1f;
 
+        var hitColliders = Physics.OverlapSphere(center, radius);
+
+        foreach (var collider in hitColliders)
+        {
+            var chicken = collider.GetComponent<Chicken>();
             if (chicken != null)
             {
                 Transform transform = GameObject.Find("ChickenPosition").transform;
                 chicken.GrabChicken(transform);
                 grabbedChicken = chicken;
+                break;
             }
+            
         }
-
     }
     
-    private void ThrowChicken()
+    private void PlaceChicken()
     {
-        grabbedChicken.ThrowChicken(accumulatedForce);
-        accumulatingForce = false;
-        accumulatedForce = initalForce;
+        grabbedChicken.PlaceChicken();
         grabbedChicken = null;
     }
 }

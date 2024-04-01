@@ -1,71 +1,68 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 _inputs = Vector2.zero;
-
-    public Rigidbody characterRigidbody;
+    private Rigidbody characterRigidbody;
 
     public Animator farmerAnimator;
 
-    public float characterMovementForceMultiplier = 2f;
+    public float changeSpeed = 10f;
+    public float speed = 10f;
+
+    private Vector3 targetMoveVector = Vector3.zero;
+    private Vector3 currentRotationVector = Vector3.zero;
 
     private static readonly int Walking = Animator.StringToHash("walking");
 
+    private void Start()
+    {
+        characterRigidbody = GetComponent<Rigidbody>();
+    }
+
     public void Movement(InputAction.CallbackContext context)
     {
-        _inputs = context.ReadValue<Vector2>();
-    }
+        var input = context.ReadValue<Vector2>();
 
-    private void Move()
-    {
-        characterRigidbody.MovePosition(
-            characterRigidbody.position + (GetIsometricInputs() * (Time.fixedDeltaTime * characterMovementForceMultiplier))
-        );
-    }
-
-    private void Rotate()
-    {
-        if (_inputs != Vector2.zero)
+        if (targetMoveVector == new Vector3(input.x, 0, input.y))
         {
-            var isometricInput = GetIsometricInputs();
-            var position = transform.position;
-
-            var relativePosition = (position + isometricInput) - position;
-            var playerRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
-
-            characterRigidbody.MoveRotation(playerRotation);
+            return;
         }
+
+        targetMoveVector = new Vector3(input.x, 0, input.y);
+
+        farmerAnimator.SetBool(Walking, input != Vector2.zero);
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        ChangeAnimationStateWalking(_inputs != Vector2.zero);
-    }
+        characterRigidbody.velocity = targetMoveVector * speed;
 
-    private void FixedUpdate()
-    {
-        Move();
-        Rotate();
-    }
+        if (transform.forward == targetMoveVector || targetMoveVector == Vector3.zero)
+        {
+            Debug.Log("OK");
+            return;
+        }
 
-    private Vector3 GetIsometricInputs()
-    {
-        Vector3 direction = new Vector3(_inputs.x, 0, _inputs.y);
-        Vector3 velocity = direction * 10f;
+        Debug.Log("calculate");
 
-        Quaternion rotation = Quaternion.Euler(0, 45, 0);
-        Vector3 isometricInput = rotation * velocity;
+        var diffVector = (targetMoveVector - currentRotationVector);
+        if(Math.Abs(diffVector.z) > 1 && Math.Abs(diffVector.x) < 0.05f)
+        {
+            diffVector.x = 0.1f;
+        }
+        if(Math.Abs(diffVector.x) > 1f && Math.Abs(diffVector.z) < 0.05f)
+        {
+            diffVector.z = 0.1f;
+        }
 
-        return isometricInput;
-    }
+        currentRotationVector += diffVector * Time.fixedDeltaTime * changeSpeed;
+        currentRotationVector.Normalize();
 
-    private void ChangeAnimationStateWalking(bool state)
-    {
-        farmerAnimator.SetBool(Walking, state);
+        transform.forward = currentRotationVector.normalized;
     }
 }
