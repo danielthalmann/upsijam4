@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,11 +12,13 @@ public class PlayerController : MonoBehaviour
 
     public Animator farmerAnimator;
 
-    public float changeSpeed = 10f;
+    public float turnSpeed = 0.01f;
     public float speed = 10f;
 
     private Vector3 targetMoveVector = Vector3.zero;
     private Vector3 currentRotationVector = Vector3.zero;
+    private float turn = 0;
+    private float advance = 0;
 
     private static readonly int Walking = Animator.StringToHash("walking");
 
@@ -28,41 +31,34 @@ public class PlayerController : MonoBehaviour
     {
         var input = context.ReadValue<Vector2>();
 
-        if (targetMoveVector == new Vector3(input.x, 0, input.y))
+        turn = input.x;
+
+        if(turn != 0)
         {
-            return;
+            // transforms float into +1 or -1
+            turn /= Math.Abs(turn);
         }
 
-        targetMoveVector = new Vector3(input.x, 0, input.y);
+        advance = input.y;
+
+        if(advance != 0)
+        {
+            // transforms float into +1 or -1
+            advance /= Math.Abs(advance);
+        }
 
         farmerAnimator.SetBool(Walking, input != Vector2.zero);
     }
 
     void FixedUpdate()
     {
-        characterRigidbody.velocity = targetMoveVector * speed;
-
-        if (transform.forward == targetMoveVector || targetMoveVector == Vector3.zero)
-        {
-            Debug.Log("OK");
-            return;
+        if (turn != 0) { 
+            transform.forward = Quaternion.Euler(0, 180 * Time.fixedDeltaTime * turnSpeed * turn, 0) * transform.forward;
         }
 
-        Debug.Log("calculate");
-
-        var diffVector = (targetMoveVector - currentRotationVector);
-        if(Math.Abs(diffVector.z) > 1 && Math.Abs(diffVector.x) < 0.05f)
+        if (advance != 0 || characterRigidbody.velocity != Vector3.zero)
         {
-            diffVector.x = 0.1f;
+            characterRigidbody.velocity = transform.forward * speed * advance;
         }
-        if(Math.Abs(diffVector.x) > 1f && Math.Abs(diffVector.z) < 0.05f)
-        {
-            diffVector.z = 0.1f;
-        }
-
-        currentRotationVector += diffVector * Time.fixedDeltaTime * changeSpeed;
-        currentRotationVector.Normalize();
-
-        transform.forward = currentRotationVector.normalized;
     }
 }
