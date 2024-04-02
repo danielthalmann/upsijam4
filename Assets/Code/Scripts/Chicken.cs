@@ -7,10 +7,8 @@ public class Chicken : MonoBehaviour
 {
     private float health = 1;
     private Vector3 targetDirection;
-    private Vector3 currentDirection;
-    private float speed;
-    private float rotationTimer;
-    private float rotationAcc = 0;
+    public float speedMin = 1;
+    public float speedMax = 5;
     private bool chickenIsGrabbed = false;
     private Transform grabber;
     private bool isInfected = false;
@@ -22,6 +20,7 @@ public class Chicken : MonoBehaviour
     public GameObject badChickenObject;
     public GameObject infectedChickenObject;
     public float timeToTurn = 2;
+    private Rigidbody rigidBody;
 
     // Start is called before the first frame update
     public void Init(bool isInfected, Vector3 position) {
@@ -34,11 +33,10 @@ public class Chicken : MonoBehaviour
         targetDirection.Normalize();
         gameObject.transform.rotation = Quaternion.LookRotation (targetDirection);
 
-        rotationTimer = (float)(Random.Range(2000, 5000)) / 1000f;
-        speed = (float)(Random.Range(1000, 2000)) / 1000f;
-
         badChickenObject.SetActive(false);
         infectedChickenObject.SetActive(false);
+
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -85,34 +83,29 @@ public class Chicken : MonoBehaviour
             return;
         }
 
-        rotationAcc += Time.deltaTime;
-
-        if (rotationAcc > rotationTimer)
+        if(Random.Range(0f, 1f) > 0.99)
         {
-            rotationAcc = 0;
-            targetDirection = new Vector3(Random.Range(-1000, 1000), 0, Random.Range(-1000, 1000));
-            targetDirection.Normalize ();
+            targetDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         }
 
-        currentDirection = targetDirection + (currentDirection * (float)(System.Math.Pow(System.Math.E, -0.1 * rotationAcc)));
+        var diff = targetDirection - transform.forward;
+        if(diff.magnitude > 0.1f) {
+            transform.forward += (targetDirection - transform.forward).normalized * 10 * Time.fixedDeltaTime;
+        }
 
-        gameObject.transform.position += targetDirection * speed * Time.deltaTime;
-        gameObject.transform.rotation = Quaternion.LookRotation(currentDirection);
+        rigidBody.velocity = targetDirection * Random.Range(speedMin, speedMax);
     }
 
     public void GrabChicken(Transform transform)
     {
         chickenIsGrabbed = true;
         grabber = transform;
-        gameObject.GetComponent<Rigidbody>().useGravity = false;
     }
 
     public void PlaceChicken()
     {
         chickenIsGrabbed = false;
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
         grabber = null;
-
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
