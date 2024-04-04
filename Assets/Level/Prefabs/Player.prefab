@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4689989294502321769}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.264, y: 1.057, z: 0.106}
+  m_LocalPosition: {x: -0.005, y: 1.057, z: 1.701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   farmerAnimator: {fileID: 3633126597999714517}
   turningSpeed: 1
-  speed: 15
+  speed: 20
 --- !u!54 &2361874932126792238
 Rigidbody:
   m_ObjectHideFlags: 0

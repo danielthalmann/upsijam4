@@ -20,6 +20,11 @@ public class PlayerGrab : MonoBehaviour
 
         var value = context.ReadValue<float>();
 
+        if(value != 0f )
+        {
+            return;
+        }
+
         if(grabbedChicken == null)
         {
             GrabChicken();

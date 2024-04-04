@@ -16,6 +16,8 @@ public class Chicken : MonoBehaviour
     public float maxTimeToBite = 5;
     private float timeToBite = 0;
 
+    public float throwStrength = 50;
+
     public GameObject niceChickenObject;
     public GameObject badChickenObject;
     public GameObject infectedChickenObject;
@@ -77,23 +79,29 @@ public class Chicken : MonoBehaviour
 
         if(chickenIsGrabbed && grabber != null)
         {
-            gameObject.transform.position = grabber.position;
-            gameObject.transform.rotation = grabber.rotation;
+            transform.position = grabber.position;
+            transform.rotation = grabber.rotation;
 
             return;
         }
 
-        if(Random.Range(0f, 1f) > 0.99)
+        if (Random.Range(0f, 1f) > 0.99)
         {
             targetDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         }
 
         var diff = targetDirection - transform.forward;
-        if(diff.magnitude > 0.1f) {
+        if (diff.magnitude > 0.1f)
+        {
             transform.forward += (targetDirection - transform.forward).normalized * 10 * Time.fixedDeltaTime;
         }
 
-        rigidBody.velocity = targetDirection * Random.Range(speedMin, speedMax);
+        if (transform.position.y < 0.5)
+        {
+            var newVelocity = targetDirection * Random.Range(speedMin, speedMax);
+            newVelocity.y = rigidBody.velocity.y;
+            rigidBody.velocity = newVelocity;
+        }
     }
 
     public void GrabChicken(Transform transform)
@@ -104,9 +112,10 @@ public class Chicken : MonoBehaviour
 
     public void PlaceChicken()
     {
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.AddForce((grabber.forward.normalized + new Vector3(0, 2f, 0)).normalized * throwStrength, ForceMode.Impulse);
         chickenIsGrabbed = false;
         grabber = null;
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)
